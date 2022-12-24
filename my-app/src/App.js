@@ -10,9 +10,10 @@ import Shop from "./components/Shop";
 import Login from "./components/Login";
 // import AdminTable from './components/AdminTable';
 // import Scheduler from './components/Scheduler';
-import BookSample from "./components/BookAppointment";
+
 import ClientsList from "./components/ClientsList";
 import BookAppointment from "./components/BookAppointment";
+// import AddTimeslot from "./components/AddTimeslot";
 
 function App() {
   return (
@@ -27,11 +28,13 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/book" element={<BookAppointment />} />
+        <Route path="/clients" element={<ClientsList />} />
       </Routes>
 
       <Footer />
 
-      {/* <ClientsList/> */}
+      {/* <ClientsList /> */}
+      {/* <BookAppointment /> */}
     </>
   );
 }

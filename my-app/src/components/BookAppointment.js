@@ -1,17 +1,34 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import { MDBBtn } from "mdb-react-ui-kit";
+import { useState, useEffect } from "react";
+import FetchAllClients from "./FetchAllClients";
 
 export default function BookAppointment() {
+  const [timeslotData, setTimeSlotData] = useState([]);
+  useEffect(() => {
+    const FetchTimeSlots = async () => {
+      let data = await FetchAllClients();
+      console.log(data);
+      setTimeSlotData(data);
+    };
+    FetchTimeSlots();
+  }, []);
   return (
     <div>
       <div className="container p-3 my-3 border">
-        <div className="d-flex justify-content-center">
-          <MDBBtn rounded className="mx-2" color="primary" size="lg">
+        <h3>Book your appointment</h3>
+        <div className="d-flex justify-content-center flex-wrap d-grid gap-3 p-4 m-4">
+          {/* <MDBBtn rounded className="mx-2" color="primary" size="lg">
             {" "}
             Mon <br></br>26 Dec
-          </MDBBtn>
-          <MDBBtn rounded className="mx-2" color="primary" size="lg">
+          </MDBBtn> */}
+          {timeslotData.map((timeslot, index) => (
+            <MDBBtn rounded className="mx-2" color="primary" size="lg">
+              {timeslot.Date}
+            </MDBBtn>
+          ))}
+          {/* <MDBBtn rounded className="mx-2" color="primary" size="lg">
             {" "}
             Tue <br></br>27 Dec
           </MDBBtn>
@@ -30,14 +47,17 @@ export default function BookAppointment() {
           <MDBBtn rounded className="mx-2" color="primary" size="lg">
             {" "}
             Sat <br></br>31 Dec
-          </MDBBtn>
+          </MDBBtn> */}
         </div>
 
         <div className="d-flex justify-content-center flex-wrap d-grid gap-3 p-4 m-4">
-          <Button variant="outline-primary" size="lg">
-            12:30pm
-          </Button>{" "}
-          <Button variant="outline-primary" size="lg">
+          {timeslotData.map((timeslot, index) => (
+            <Button variant="outline-primary" size="lg">
+              {timeslot.Time}
+              {/* <br></br> {timeslot.Date} */}
+            </Button>
+          ))}
+          {/* <Button variant="outline-primary" size="lg">
             13:30pm
           </Button>{" "}
           <Button variant="outline-primary" size="lg">
@@ -57,7 +77,7 @@ export default function BookAppointment() {
           </Button>{" "}
           <Button variant="outline-primary" size="lg">
             18:30pm
-          </Button>{" "}
+          </Button>{" "} */}
         </div>
         <div className="d-grid gap-2 col-3 mx-auto">
           <MDBBtn rounded className="mx-2" color="success" size="lg">

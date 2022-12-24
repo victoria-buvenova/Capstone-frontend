@@ -20,7 +20,17 @@ export default function Navbar() {
     <>
       <MDBNavbar expand="lg" light style={{ backgroundColor: "#e3f2fd" }}>
         <MDBContainer fluid>
-          <MDBNavbarBrand href="#">Eleonora</MDBNavbarBrand>
+          <MDBNavbarBrand
+            href="#"
+            style={{
+              fontFamily: "Alegreya",
+              color: "rgb(104, 104, 104)",
+            }}
+          >
+            <Link className="navbar-brand navigation" to="/about">
+              Eleonora <MDBIcon far icon="star" />
+            </Link>
+          </MDBNavbarBrand>
           <MDBNavbarToggler
             type="button"
             data-target="#navbarColor02"
@@ -54,9 +64,11 @@ export default function Navbar() {
                 </Link>
               </MDBNavbarItem>
 
-              {/* <MDBNavbarItem>
-              <Link className="navbar-brand navigation" to='/about'>About</Link>
-              </MDBNavbarItem> */}
+              <MDBNavbarItem>
+                <Link className="navbar-brand navigation" to="/clients">
+                  My timetable
+                </Link>
+              </MDBNavbarItem>
 
               <MDBBtn outline rounded className="mx-2" color="secondary">
                 <Link to="/login">Log in</Link>
