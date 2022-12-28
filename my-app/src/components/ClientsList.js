@@ -15,6 +15,7 @@ import Modal from "react-bootstrap/Modal";
 import DeleteClient from "./DeleteClient";
 import EditBooking from "./EditBooking";
 import AddSlots from "./AddSlots";
+import { extractDateFromJSDate, extractTimeFromJSDate } from "../utils";
 
 export default function ClientsList() {
   const [timeslotData, setTimeSlotData] = useState([]);
@@ -32,6 +33,8 @@ export default function ClientsList() {
   const handleCloseDelete = () => setShowDelete(false);
   const handleShowDelete = () => setShowDelete(true);
 
+  const [addTime, setAddTime] = useState();
+
   const FetchTimeSlots = async () => {
     let data = await FetchAllClients();
     setTimeSlotData(data);
@@ -41,7 +44,7 @@ export default function ClientsList() {
     setTimeout(() => {
       FetchTimeSlots();
     }, 1000);
-  }, [selected]);
+  }, [selected, addTime]);
 
   if (timeslotData.length === 0) return <div>No clients</div>;
   return (
@@ -67,7 +70,6 @@ export default function ClientsList() {
           type="button"
           class="btn btn-success d-grid gap-1 my-2 mx-auto"
           onClick={() => {
-            AddSlots(selected);
             setSelected();
             handleShowAdd();
           }}
@@ -129,7 +131,9 @@ export default function ClientsList() {
                 id="datetime-local"
                 label="Next appointment"
                 type="datetime-local"
-                defaultValue="2017-05-24T10:30"
+                // defaultValue="2017-05-24T10:30"
+                value={addTime}
+                onChange={(e) => setAddTime(e.target.value)}
                 sx={{ width: 250 }}
                 InputLabelProps={{
                   shrink: true,
@@ -141,7 +145,17 @@ export default function ClientsList() {
             <Button variant="secondary" onClick={handleCloseAdd}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleCloseAdd}>
+            <Button
+              variant="primary"
+              onClick={() => {
+                AddSlots(
+                  extractDateFromJSDate(addTime),
+                  extractTimeFromJSDate(addTime)
+                );
+                setAddTime();
+                handleCloseAdd();
+              }}
+            >
               Save Changes
             </Button>
           </Modal.Footer>

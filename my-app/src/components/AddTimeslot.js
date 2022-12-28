@@ -7,9 +7,9 @@ export default function AddTimeslot() {
     <Stack component="form" noValidate spacing={3}>
       <TextField
         id="datetime-local"
-        label="Next appointment"
+        label="Next appointment hhhh"
         type="datetime-local"
-        defaultValue="2017-05-24T10:30"
+        defaultValue="2022-05-24T10:30"
         sx={{ width: 250 }}
         InputLabelProps={{
           shrink: true,
