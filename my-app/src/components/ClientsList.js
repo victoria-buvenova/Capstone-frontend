@@ -15,7 +15,13 @@ import Modal from "react-bootstrap/Modal";
 import DeleteClient from "./DeleteClient";
 import EditBooking from "./EditBooking";
 import AddSlots from "./AddSlots";
-import { extractDateFromJSDate, extractTimeFromJSDate } from "../utils";
+import {
+  convertToJSDate,
+  extractDateFromJSDate,
+  extractTimeFromJSDate,
+  getCurrentClient,
+} from "../utils";
+import { useAuth } from "../context/AuthProvider";
 
 export default function ClientsList() {
   const [timeslotData, setTimeSlotData] = useState([]);
@@ -88,9 +94,9 @@ export default function ClientsList() {
             </tr>
           </MDBTableHead>
           <MDBTableBody>
-            {timeslotData.map((timeslot) => (
+            {timeslotData.map((timeslot, index) => (
               <tr key={timeslot.id}>
-                <th scope="row">{timeslot.id}</th>
+                <th scope="row">{index + 1}</th>
                 <td>{timeslot.Name}</td>
                 <td>{timeslot.Date}</td>
                 <td>{timeslot.Time}</td>
@@ -160,50 +166,63 @@ export default function ClientsList() {
             </Button>
           </Modal.Footer>
         </Modal>
-
-        <Modal show={showEdit} onHide={handleCloseEdit}>
-          <Modal.Header closeButton>
-            <Modal.Title>Edit date or time</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div class="form-outline">
-              <input type="text" id="typeText" class="form-control" />
-              <label class="form-label" for="typeText">
-                Enter client ID
-              </label>
-            </div>
-            <br></br>
-            <div class="form-outline">
-              <input type="text" id="typeText" class="form-control" />
-              <label class="form-label" for="typeText">
-                Edit date
-              </label>
-            </div>
-            <br></br>
-            <div class="form-outline">
-              <input type="text" id="typeText" class="form-control" />
-              <label class="form-label" for="typeText">
-                Edit time
-              </label>
-            </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseEdit}>
-              Close
-            </Button>
-            <Button
-              variant="primary"
-              onClick={() => {
-                EditBooking(selected);
-                setSelected();
-                handleCloseEdit();
-              }}
-            >
-              Save Changes
-            </Button>
-          </Modal.Footer>
-        </Modal>
-
+        {selected && (
+          <Modal
+            show={showEdit}
+            onHide={() => {
+              setSelected();
+              handleCloseEdit();
+            }}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>
+                {getCurrentClient(timeslotData, selected).Name
+                  ? `Edit date or time for
+                  ${getCurrentClient(timeslotData, selected).Name}`
+                  : "Confirm booking"}
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Stack component="form" noValidate spacing={3}>
+                <TextField
+                  id="datetime-local"
+                  label="Next appointment"
+                  type="datetime-local"
+                  defaultValue={convertToJSDate(
+                    getCurrentClient(timeslotData, selected).Date,
+                    getCurrentClient(timeslotData, selected).Time
+                  )}
+                  // value={addTime}
+                  onChange={(e) => setAddTime(e.target.value)}
+                  sx={{ width: 250 }}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </Stack>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleCloseEdit}>
+                Close
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  EditBooking(
+                    getCurrentClient(timeslotData, selected).id,
+                    extractDateFromJSDate(addTime),
+                    extractTimeFromJSDate(addTime)
+                  );
+                  setAddTime();
+                  setSelected();
+                  handleCloseEdit();
+                }}
+              >
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        )}
         <Modal show={showDelete} onHide={handleCloseDelete}>
           <Modal.Header closeButton>
             <Modal.Title>Delete booking</Modal.Title>

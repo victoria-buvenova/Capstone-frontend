@@ -6,3 +6,6 @@ export const extractDateFromJSDate = (dateString) => {
 export const extractTimeFromJSDate = (dateString) => dateString.slice(11, 19);
 
 export const convertToJSDate = (date, time) => `${date}T${time}`;
+
+export const getCurrentClient = (timeslotsArray, id) =>
+  timeslotsArray.find((x) => x.id === id);

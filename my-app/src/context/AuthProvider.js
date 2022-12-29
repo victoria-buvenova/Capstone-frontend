@@ -6,42 +6,26 @@ export const AuthProvider = ({ children }) => {
   const [client, setClient] = useState(
     JSON.parse(localStorage.getItem("client"))
   );
-  const [table, setTable] = useState(
-    JSON.parse(localStorage.getItem("table")) || []
-  );
+
   const [admin, setAdmin] = useState(
     JSON.parse(localStorage.getItem("admin")) ?? 0
   );
+  const [isAdmin, setIsAdmin] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState();
 
-  const login = (client) => {
-    setClient(client);
-    setTable(table);
-    localStorage.setItem("client", JSON.stringify(client));
+  const login = (client, admin) => {
+    setIsLoggedIn(client);
+    setIsAdmin(admin);
   };
 
   const logout = () => {
-    setClient(null);
-    setTable(null);
-    setAdmin(null);
-    localStorage.removeItem("client");
-    localStorage.removeItem("table");
-    localStorage.removeItem("admin");
+    setIsLoggedIn(null);
+    setIsAdmin(null);
   };
-
-  function showTableToAdmin() {
-    setTable((table) => {
-      const tableForAdmin = console.log(tableForAdmin);
-      return;
-    });
-  }
-
-  function hideTable() {
-    setTable();
-  }
 
   return (
     <AuthContext.Provider
-      value={{ client, table, login, logout, showTableToAdmin, hideTable }}
+      value={{ client, login, logout, admin, isAdmin, isLoggedIn }}
     >
       {children}
     </AuthContext.Provider>
