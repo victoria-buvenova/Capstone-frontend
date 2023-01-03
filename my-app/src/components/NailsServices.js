@@ -12,7 +12,7 @@ export const NailsServices = () => {
       let myData = await FetchServices("http://localhost:8080/clients/nails");
       setServices(myData);
     };
-    console.log("makeup");
+
     updateServices();
   }, []);
 

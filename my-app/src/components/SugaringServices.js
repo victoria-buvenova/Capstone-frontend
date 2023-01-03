@@ -21,7 +21,7 @@ export const SugaringServices = () => {
       );
       setServices(myData);
     };
-    console.log("sugaring");
+
     updateServices();
   }, []);
 
@@ -30,37 +30,34 @@ export const SugaringServices = () => {
   }
 
   return (
-    console.log("ggg/", services),
-    (
-      <div class="p-4">
-        <MDBRow className="row-cols-1 row-cols-md-3 g-4">
-          {services.map((service, index) => {
-            return (
-              //   <Card
-              //     item={service}
-              //     type={service.type}
-              //     description={service.description}
-              //     price={service.price}
-              //     color={"bg-success p-2 text-dark opacity-10"}
-              //     key={index}
-              //   />
+    <div class="p-4">
+      <MDBRow className="row-cols-1 row-cols-md-3 g-4">
+        {services.map((service, index) => {
+          return (
+            //   <Card
+            //     item={service}
+            //     type={service.type}
+            //     description={service.description}
+            //     price={service.price}
+            //     color={"bg-success p-2 text-dark opacity-10"}
+            //     key={index}
+            //   />
 
-              <MDBCard
-                border="primary"
-                background="white"
-                className="text-black mb-3 d-flex justify-content-space-between"
-              >
-                <MDBCardHeader> {service.type}</MDBCardHeader>
-                <MDBCardBody>
-                  <MDBCardTitle>{service.price}</MDBCardTitle>
-                  <MDBCardText>{service.description}</MDBCardText>
-                </MDBCardBody>
-              </MDBCard>
-            );
-          })}
-        </MDBRow>
-      </div>
-    )
+            <MDBCard
+              border="primary"
+              background="white"
+              className="text-black mb-3 d-flex justify-content-space-between"
+            >
+              <MDBCardHeader> {service.type}</MDBCardHeader>
+              <MDBCardBody>
+                <MDBCardTitle>{service.price}</MDBCardTitle>
+                <MDBCardText>{service.description}</MDBCardText>
+              </MDBCardBody>
+            </MDBCard>
+          );
+        })}
+      </MDBRow>
+    </div>
   );
 };
 

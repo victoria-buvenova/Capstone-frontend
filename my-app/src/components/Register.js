@@ -64,7 +64,7 @@ export default function Register() {
         value={password.second}
         onChange={(e) => {
           setPassword({ ...password, second: e.target.value });
-          console.log(password.first === password.second);
+
           if (password.first !== password.second) {
             setErrMsg("Passwords do not match");
           } else {

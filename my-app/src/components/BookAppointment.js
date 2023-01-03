@@ -29,126 +29,123 @@ export default function BookAppointment() {
     }, 1000);
   }, [selectedId]);
   return (
-    console.log(name, contacts, selectedId),
-    (
-      <>
-        <div>
-          <div className="container p-3 my-3 border">
-            <h3 className="d-flex justify-content-center">
-              <strong>Book your appointment</strong>
-            </h3>
+    <>
+      <div>
+        <div className="container p-3 my-3 border">
+          <h3 className="d-flex justify-content-center">
+            <strong>Book your appointment</strong>
+          </h3>
+          <div className="d-flex justify-content-center flex-wrap d-grid gap-3 p-4 m-4">
+            {unique(timeslotData)
+              .filter(
+                (timeslot) => !timeslot.Name || timeslot.Name === "undefined"
+              )
+              .map((timeslot, index) => (
+                <MDBBtn
+                  rounded
+                  className="mx-2"
+                  color={
+                    selectedDate === timeslot.Date
+                      ? "primary"
+                      : "outline-primary"
+                  }
+                  size="lg"
+                  onClick={() => {
+                    setSelectedDate(timeslot.Date);
+                    setSelectedTime();
+                  }}
+                  key={timeslot.id}
+                  active={selectedDate === timeslot.Date}
+                >
+                  {convertDate(timeslot.Date)}
+                </MDBBtn>
+              ))}
+          </div>
+
+          {selectedDate ? (
             <div className="d-flex justify-content-center flex-wrap d-grid gap-3 p-4 m-4">
-              {unique(timeslotData)
-                .filter(
-                  (timeslot) => !timeslot.Name || timeslot.Name === "undefined"
-                )
+              {timeslotData
+                .filter((timeslot) => !timeslot.Name)
+                .filter((timeslot) => timeslot.Date === selectedDate)
                 .map((timeslot, index) => (
-                  <MDBBtn
-                    rounded
-                    className="mx-2"
-                    color={
-                      selectedDate === timeslot.Date
-                        ? "primary"
-                        : "outline-primary"
-                    }
+                  <Button
+                    variant="outline-primary"
                     size="lg"
-                    onClick={() => {
-                      setSelectedDate(timeslot.Date);
-                      setSelectedTime();
-                    }}
                     key={timeslot.id}
-                    active={selectedDate === timeslot.Date}
+                    active={selectedTime === timeslot.Time}
+                    onClick={() => {
+                      setSelectedTime(timeslot.Time);
+                      setSelectedId(timeslot.id);
+                    }}
                   >
-                    {convertDate(timeslot.Date)}
-                  </MDBBtn>
+                    {timeslot.Time}
+                  </Button>
                 ))}
             </div>
-
-            {selectedDate ? (
-              <div className="d-flex justify-content-center flex-wrap d-grid gap-3 p-4 m-4">
-                {timeslotData
-                  .filter((timeslot) => !timeslot.Name)
-                  .filter((timeslot) => timeslot.Date === selectedDate)
-                  .map((timeslot, index) => (
-                    <Button
-                      variant="outline-primary"
-                      size="lg"
-                      key={timeslot.id}
-                      active={selectedTime === timeslot.Time}
-                      onClick={() => {
-                        setSelectedTime(timeslot.Time);
-                        setSelectedId(timeslot.id);
-                      }}
-                    >
-                      {timeslot.Time}
-                    </Button>
-                  ))}
-              </div>
-            ) : (
-              <div>Please select date</div>
-            )}
-            <div className="d-grid gap-2 col-3 mx-auto">
-              <MDBBtn
-                rounded
-                className="mx-2"
-                color="success"
-                size="lg"
-                onClick={() => setShowModal(true)}
-              >
-                BOOK
-              </MDBBtn>
-            </div>
+          ) : (
+            <div>Please select date</div>
+          )}
+          <div className="d-grid gap-2 col-3 mx-auto">
+            <MDBBtn
+              rounded
+              className="mx-2"
+              color="success"
+              size="lg"
+              onClick={() => setShowModal(true)}
+            >
+              BOOK
+            </MDBBtn>
           </div>
         </div>
-        <Modal show={showModal} onHide={() => setShowModal(false)}>
-          <Modal.Header closeButton>
-            <Modal.Title>Add your name and contact number</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Stack component="form" noValidate spacing={3}>
-              <TextField
-                label="Your name"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                // sx={{ width: 250 }}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-
-              <TextField
-                label="Contacts"
-                type="number"
-                value={contacts}
-                onChange={(e) => setContacts(e.target.value)}
-                // sx={{ width: 250 }}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-            </Stack>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowModal(false)}>
-              Close
-            </Button>
-            <Button
-              variant="primary"
-              onClick={() => {
-                AddBooking(name, contacts, selectedId);
-                setName();
-                setContacts();
-                setSelectedId();
-                setSelectedDate();
-                setShowModal(false);
+      </div>
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add your name and contact number</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Stack component="form" noValidate spacing={3}>
+            <TextField
+              label="Your name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              // sx={{ width: 250 }}
+              InputLabelProps={{
+                shrink: true,
               }}
-            >
-              Save Changes
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </>
-    )
+            />
+
+            <TextField
+              label="Contacts"
+              type="number"
+              value={contacts}
+              onChange={(e) => setContacts(e.target.value)}
+              // sx={{ width: 250 }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </Stack>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Close
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => {
+              AddBooking(name, contacts, selectedId);
+              setName();
+              setContacts();
+              setSelectedId();
+              setSelectedDate();
+              setShowModal(false);
+            }}
+          >
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 }

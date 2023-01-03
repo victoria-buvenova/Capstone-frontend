@@ -12,7 +12,7 @@ export const MakeupServices = () => {
       let myData = await FetchServices("http://localhost:8080/clients/makeup");
       setServices(myData);
     };
-    console.log("makeup");
+
     updateServices();
   }, []);
 
