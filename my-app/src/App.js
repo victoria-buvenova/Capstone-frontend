@@ -16,6 +16,9 @@ import BookAppointment from "./components/BookAppointment";
 import { AuthProvider } from "./context/AuthProvider";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { SugaringServices } from "./components/SugaringServices";
+import { MakeupServices } from "./components/MakeupServices";
+import { NailsServices } from "./components/NailsServices";
+import { MyBookings } from "./components/MyBookings";
 // import AddTimeslot from "./components/AddTimeslot";
 
 function App() {
@@ -32,6 +35,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/book" element={<BookAppointment />} />
         <Route path="/sugaring" element={<SugaringServices />} />
+        <Route path="/makeup" element={<MakeupServices />} />
+        <Route path="/nails" element={<NailsServices />} />
+
         <Route
           path="/clients"
           element={
@@ -40,6 +46,14 @@ function App() {
             </PrivateRoute>
           }
         />
+        {/* <Route
+          path="/mybookings"
+          element={
+            <PrivateRoute>
+              <MyBookings />
+            </PrivateRoute>
+          }
+        /> */}
       </Routes>
 
       <Footer />

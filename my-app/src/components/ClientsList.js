@@ -1,4 +1,3 @@
-import FetchAllClients from "./FetchAllClients";
 import React from "react";
 import { useEffect, useState } from "react";
 import {
@@ -7,7 +6,7 @@ import {
   MDBTableBody,
   MDBIcon,
 } from "mdb-react-ui-kit";
-// import AddTimeslot from "./AddTimeslot";
+
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "react-bootstrap/Button";
@@ -21,7 +20,8 @@ import {
   extractTimeFromJSDate,
   getCurrentClient,
 } from "../utils";
-import { useAuth } from "../context/AuthProvider";
+
+import FetchServices from "./FetchServices";
 
 export default function ClientsList() {
   const [timeslotData, setTimeSlotData] = useState([]);
@@ -42,7 +42,7 @@ export default function ClientsList() {
   const [addTime, setAddTime] = useState();
 
   const FetchTimeSlots = async () => {
-    let data = await FetchAllClients();
+    let data = await FetchServices("http://localhost:8080/admin/getall");
     setTimeSlotData(data);
   };
 
@@ -55,17 +55,6 @@ export default function ClientsList() {
   if (timeslotData.length === 0) return <div>No clients</div>;
   return (
     <div>
-      {/* <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <button type="button" class="btn btn-success px-6" onClick={handleShow}>
-          <MDBIcon fas icon="plus-circle" /> ADD
-        </button>
-      </div>*/}
       <div
         className="table-container"
         style={{

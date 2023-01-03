@@ -4,12 +4,12 @@ import Spinner from "./Spinner";
 import { useEffect, useState } from "react";
 import FetchServices from "./FetchServices";
 
-export const MakeupServices = () => {
+export const NailsServices = () => {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
     const updateServices = async () => {
-      let myData = await FetchServices("http://localhost:8080/clients/makeup");
+      let myData = await FetchServices("http://localhost:8080/clients/nails");
       setServices(myData);
     };
     console.log("makeup");

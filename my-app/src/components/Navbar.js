@@ -78,10 +78,7 @@ export default function Navbar() {
 
                 {isLoggedIn && !isAdmin ? (
                   <MDBNavbarItem>
-                    <Link
-                      className="navbar-brand navigation"
-                      to="/myappoinment"
-                    >
+                    <Link className="navbar-brand navigation" to="/mybookings">
                       My bookings
                     </Link>
                   </MDBNavbarItem>
