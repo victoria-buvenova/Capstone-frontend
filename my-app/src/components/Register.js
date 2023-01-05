@@ -1,11 +1,11 @@
 import { MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from "mdb-react-ui-kit";
 import { useState } from "react";
 import AddUser from "./AddUser";
+import ValidationError from "./ValidationError";
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password1, setPassword1] = useState("");
-  const [errMsg, setErrMsg] = useState();
   const [password2, setPassword2] = useState("");
   const [password, setPassword] = useState({});
 
@@ -64,14 +64,11 @@ export default function Register() {
         value={password.second}
         onChange={(e) => {
           setPassword({ ...password, second: e.target.value });
-
-          if (password.first !== password.second) {
-            setErrMsg("Passwords do not match");
-          } else {
-            setErrMsg("");
-          }
         }}
       />
+      {password.second && password.first !== password.second && (
+        <ValidationError errorMsg="Passwords do not match" />
+      )}
       <div className="d-flex justify-content-center mb-4">
         <MDBCheckbox
           name="flexCheck"

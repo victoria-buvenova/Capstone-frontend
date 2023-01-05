@@ -21,7 +21,7 @@ export const NailsServices = () => {
   }
 
   return (
-    <div class="p-4">
+    <div className="p-4">
       <MDBRow className="row-cols-1 row-cols-md-3 g-4">
         {services.map((service, index) => {
           return (

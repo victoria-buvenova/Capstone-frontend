@@ -7,6 +7,7 @@ import {
   MDBIcon,
   MDBBtn,
 } from "mdb-react-ui-kit";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -45,14 +46,14 @@ export default function Footer() {
             <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Useful links</h6>
               <p>
-                <a href="#!" className="text-reset">
+                <Link to="/sugaringvswaxing" className="text-reset">
                   Why sugaring is better?
-                </a>
+                </Link>
               </p>
               <p>
-                <a href="#!" className="text-reset">
+                <Link to="/faq" className="text-reset">
                   FAQ
-                </a>
+                </Link>
               </p>
             </MDBCol>
 

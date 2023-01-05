@@ -20,6 +20,10 @@ import { MakeupServices } from "./components/MakeupServices";
 import { NailsServices } from "./components/NailsServices";
 import { MyBookings } from "./components/MyBookings";
 // import AddTimeslot from "./components/AddTimeslot";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import UsefulLink from "./components/UsefulLink";
+import Faq from "./components/Faq";
 
 function App() {
   return (
@@ -37,6 +41,8 @@ function App() {
         <Route path="/sugaring" element={<SugaringServices />} />
         <Route path="/makeup" element={<MakeupServices />} />
         <Route path="/nails" element={<NailsServices />} />
+        <Route path="/sugaringvswaxing" element={<UsefulLink />} />
+        <Route path="/faq" element={<Faq />} />
 
         <Route
           path="/clients"
@@ -57,6 +63,7 @@ function App() {
       </Routes>
 
       <Footer />
+      <ToastContainer />
     </AuthProvider>
   );
 }

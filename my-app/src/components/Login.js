@@ -23,6 +23,7 @@ function App() {
   const [password, setPassword] = useState("");
   const [users, setUsers] = useState();
   const { login } = useAuth();
+  const [errMsg, setErrMsg] = useState("");
 
   const handleJustifyClick = (value) => {
     if (value === justifyActive) {
@@ -117,7 +118,7 @@ function App() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-
+          <div>{errMsg}</div>
           <div className="d-flex justify-content-around mx-4 mb-4">
             <MDBCheckbox
               name="flexCheck"
@@ -134,15 +135,18 @@ function App() {
               const user = users.find(
                 (user) => user.email === email && user.password === password
               );
-
-              const admin = users.find(
-                (user) =>
-                  user.email === email &&
-                  user.password === password &&
-                  user.isAdmin
-              );
-              login(user, admin);
-              navigate("/home");
+              if (!user) {
+                setErrMsg("Password or Email is incorrect");
+              } else {
+                const admin = users.find(
+                  (user) =>
+                    user.email === email &&
+                    user.password === password &&
+                    user.isAdmin
+                );
+                login(user, admin);
+                navigate("/home");
+              }
             }}
           >
             Sign in

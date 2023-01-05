@@ -22,6 +22,7 @@ import {
 } from "../utils";
 
 import FetchServices from "./FetchServices";
+import { toast } from "react-toastify";
 
 export default function ClientsList() {
   const [timeslotData, setTimeSlotData] = useState([]);
@@ -63,7 +64,7 @@ export default function ClientsList() {
       >
         <button
           type="button"
-          class="btn btn-success d-grid gap-1 my-2 mx-auto"
+          className="btn btn-success d-grid gap-1 my-2 mx-auto"
           onClick={() => {
             setSelected();
             handleShowAdd();
@@ -104,7 +105,7 @@ export default function ClientsList() {
 
                 <button
                   type="button"
-                  class="btn  px-6"
+                  className="btn  px-6"
                   onClick={() => {
                     setSelected(timeslot.id);
                     handleShowDelete();
@@ -147,6 +148,7 @@ export default function ClientsList() {
                   extractDateFromJSDate(addTime),
                   extractTimeFromJSDate(addTime)
                 );
+                toast("Successfully added");
                 setAddTime();
                 handleCloseAdd();
               }}
@@ -202,6 +204,7 @@ export default function ClientsList() {
                     extractDateFromJSDate(addTime),
                     extractTimeFromJSDate(addTime)
                   );
+                  toast("Successfully edited");
                   setAddTime();
                   setSelected();
                   handleCloseEdit();
@@ -225,6 +228,7 @@ export default function ClientsList() {
               variant="primary"
               onClick={() => {
                 DeleteClient(selected);
+                toast("Successfully deleted");
                 setSelected();
                 handleCloseDelete();
               }}
