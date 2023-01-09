@@ -43,6 +43,7 @@ function App() {
         <Route path="/nails" element={<NailsServices />} />
         <Route path="/sugaringvswaxing" element={<UsefulLink />} />
         <Route path="/faq" element={<Faq />} />
+        <Route path="/mybookings" element={<MyBookings />} />
 
         <Route
           path="/clients"

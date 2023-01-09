@@ -22,7 +22,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [users, setUsers] = useState();
-  const { login } = useAuth();
+  const { login, setAdmin, setClient } = useAuth();
   const [errMsg, setErrMsg] = useState("");
 
   const handleJustifyClick = (value) => {
@@ -145,6 +145,8 @@ function Login() {
                     user.isAdmin
                 );
                 login(user, admin);
+                setAdmin(email, password);
+                setClient(email, password);
                 navigate("/home");
               }
             }}

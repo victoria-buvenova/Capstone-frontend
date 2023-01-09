@@ -14,6 +14,8 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState();
 
   const login = (client, admin) => {
+    setAdmin(admin);
+    setClient(client);
     setIsLoggedIn(client);
     setIsAdmin(admin);
   };
@@ -25,7 +27,16 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ client, login, logout, admin, isAdmin, isLoggedIn }}
+      value={{
+        client,
+        login,
+        logout,
+        admin,
+        isAdmin,
+        isLoggedIn,
+        setAdmin,
+        setClient,
+      }}
     >
       {children}
     </AuthContext.Provider>
