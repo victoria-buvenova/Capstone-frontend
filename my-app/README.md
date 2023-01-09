@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Appointment booking system
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Capstone Project
 
-## Available Scripts
+The initial goal of the software is to add some ✨Magic ✨ and create an easy appointment booking system.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Admin: Add timeslots for users to book;
+- Admin: View and Edit all available tomeslots;
+- Admin: View and Edit Prices for services;
+- Admin: Remove Timeslots and Users;
+- Non-registered Users: View and Book available timeslots;
+- Non-registered Users: View Services and Prices;
+- Registered Users: View own Bookings;
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+> Customers may be interested in this software because it allows them to easily book and manage appointments. Beauty professionals may find this software useful because it helps them manage their schedules and serve their customers better. Business owners may benefit from this software because it can help them to manage their operations and attract new customers. All of these stakeholders may benefit from the convenience and efficiency provided by this software.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies used
 
-### `npm test`
+- [React](https://beta.reactjs.org/);
+- [Javascript](https://www.javascript.com/);
+- [React Router 6](https://reactrouter.com/en/main);
+- [React Context API](https://reactjs.org/docs/context.html) (Managing state);
+- [Create React App](https://create-react-app.dev/); (Run one command set up a new react app)
+- [MDBootstrap](https://mdbootstrap.com/docs/react/) (UI Library that provides a simple, customizable, and accessible library of React components , and speeds up the development process(in theory though));
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+The app [Node.js](https://nodejs.org/) v10+ to run.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Install the dependencies and devDependencies and start the server.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. clone repo with `https://github.com/victoria-buvenova/Capstone-frontend.git`
+2. run `npm install` to install all dependancies
+3. run `npm run start` to start the application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## License
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT
