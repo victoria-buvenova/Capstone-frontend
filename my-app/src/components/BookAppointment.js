@@ -100,7 +100,7 @@ export default function BookAppointment() {
       </div>
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Add your name and contact number</Modal.Title>
+          <Modal.Title>Add your name and email</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Stack component="form" noValidate spacing={3}>
@@ -116,8 +116,8 @@ export default function BookAppointment() {
             />
 
             <TextField
-              label="Contacts"
-              type="number"
+              label="Email"
+              type="email"
               value={contacts}
               onChange={(e) => setContacts(e.target.value)}
               // sx={{ width: 250 }}

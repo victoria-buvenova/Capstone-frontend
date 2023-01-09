@@ -49,16 +49,7 @@ export default function Navbar() {
                   Home
                 </Link>
               </MDBNavbarItem>
-              <MDBNavbarItem>
-                <Link className="navbar-brand navigation" to="/services">
-                  Services
-                </Link>
-              </MDBNavbarItem>
-              <MDBNavbarItem>
-                <Link className="navbar-brand navigation" to="/pricing">
-                  Pricing
-                </Link>
-              </MDBNavbarItem>
+
               {/* <MDBNavbarItem>
                   <Link className="navbar-brand navigation" to="/shop">
                     Shop

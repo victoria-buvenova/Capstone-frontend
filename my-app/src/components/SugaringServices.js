@@ -90,7 +90,6 @@ export const SugaringServices = () => {
               <TextField
                 label="Edit price"
                 type="number"
-                // defaultValue="2017-05-24T10:30"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 sx={{ width: 250 }}

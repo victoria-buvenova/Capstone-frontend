@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import FetchServices from "./FetchServices";
 import Register from "./Register";
 
-function App() {
+function Login() {
   const [justifyActive, setJustifyActive] = useState("tab1");
 
   const [email, setEmail] = useState("");
@@ -164,4 +164,4 @@ function App() {
   );
 }
 
-export default App;
+export default Login;

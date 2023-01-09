@@ -1,5 +1,6 @@
 import { MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from "mdb-react-ui-kit";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import AddUser from "./AddUser";
 import ValidationError from "./ValidationError";
 
@@ -78,7 +79,10 @@ export default function Register() {
       </div>
       <MDBBtn
         className="mb-4 w-100"
-        onClick={() => AddUser(email, password.first)}
+        onClick={() => {
+          AddUser(email, password.first);
+          toast("Succesfully registered. Please log in");
+        }}
         disabled={password.first !== password.second}
       >
         Sign up
