@@ -15,15 +15,16 @@ import ClientsList from "./components/ClientsList";
 import BookAppointment from "./components/BookAppointment";
 import { AuthProvider } from "./context/AuthProvider";
 import { PrivateRoute } from "./components/PrivateRoute";
-import { SugaringServices } from "./components/SugaringServices";
-import { MakeupServices } from "./components/MakeupServices";
-import { NailsServices } from "./components/NailsServices";
+import { SugaringServices } from "./services/SugaringServices";
+import { MakeupServices } from "./services/MakeupServices";
+import { NailsServices } from "./services/NailsServices";
 import { MyBookings } from "./components/MyBookings";
 // import AddTimeslot from "./components/AddTimeslot";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UsefulLink from "./components/UsefulLink";
 import Faq from "./components/Faq";
+import { NotFound } from "./components/NotFound";
 
 function App() {
   return (
@@ -32,9 +33,6 @@ function App() {
 
       <Routes>
         <Route path="/home" element={<Home />} />
-        {/* <Route path="/services" element={<Services />} /> */}
-        {/* <Route path="/pricing" element={<Pricing />} />
-        <Route path="/shop" element={<Shop />} /> */}
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/book" element={<BookAppointment />} />
@@ -43,7 +41,17 @@ function App() {
         <Route path="/nails" element={<NailsServices />} />
         <Route path="/sugaringvswaxing" element={<UsefulLink />} />
         <Route path="/faq" element={<Faq />} />
-        <Route path="/mybookings" element={<MyBookings />} />
+        {/* <Route path="/mybookings" element={<MyBookings />} /> */}
+        <Route path="*" element={<NotFound />} />
+
+        <Route
+          path="/mybookings"
+          element={
+            <PrivateRoute>
+              <MyBookings />
+            </PrivateRoute>
+          }
+        />
 
         <Route
           path="/clients"
@@ -53,14 +61,6 @@ function App() {
             </PrivateRoute>
           }
         />
-        {/* <Route
-          path="/mybookings"
-          element={
-            <PrivateRoute>
-              <MyBookings />
-            </PrivateRoute>
-          }
-        /> */}
       </Routes>
 
       <Footer />

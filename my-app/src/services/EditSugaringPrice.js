@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const EditPrice = async (id, price) => {
+const EditSugaringPrice = async (id, price) => {
   let response = await axios.put(
     `http://localhost:8080/admin/updatesugaringprice?price=${price}&id=${id}`
   );
@@ -8,4 +8,4 @@ const EditPrice = async (id, price) => {
   return response.data;
 };
 
-export default EditPrice;
+export default EditSugaringPrice;

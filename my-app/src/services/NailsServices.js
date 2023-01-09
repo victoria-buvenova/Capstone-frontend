@@ -1,37 +1,35 @@
-import ServicesCard from "./ServicesCard";
+import FetchServices from "./FetchServices";
+import { MDBRow } from "mdb-react-ui-kit";
+import Spinner from "../components/Spinner";
+import { useEffect, useState } from "react";
 import {
-  MDBRow,
-  MDBBtn,
   MDBCard,
   MDBCardHeader,
   MDBCardBody,
   MDBCardTitle,
   MDBCardText,
+  MDBBtn,
 } from "mdb-react-ui-kit";
-import Spinner from "./Spinner";
-import { useEffect, useState } from "react";
-import FetchServices from "./FetchServices";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import EditMakeupPrice from "./EditMakeupPrice";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthProvider";
+import EditNailsPrice from "./EditNailsPrice";
 
-export const MakeupServices = () => {
+export const NailsServices = () => {
   const [services, setServices] = useState([]);
+  const [price, setPrice] = useState();
   const [showModal, setShowModal] = useState(false);
   const [id, setId] = useState();
   const { isAdmin } = useAuth();
-  const [price, setPrice] = useState();
 
   useEffect(() => {
     const updateServices = async () => {
-      let myData = await FetchServices("http://localhost:8080/clients/makeup");
+      let myData = await FetchServices("http://localhost:8080/clients/nails");
       setServices(myData);
     };
-
     setTimeout(() => {
       updateServices();
     }, 1000);
@@ -88,7 +86,6 @@ export const MakeupServices = () => {
             <TextField
               label="Edit price"
               type="number"
-              // defaultValue="2017-05-24T10:30"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               sx={{ width: 250 }}
@@ -105,7 +102,7 @@ export const MakeupServices = () => {
           <Button
             variant="primary"
             onClick={() => {
-              EditMakeupPrice(id, price);
+              EditNailsPrice(id, price);
               toast("Price successfully edited");
               setPrice();
               setId();

@@ -5,12 +5,10 @@ import {
   MDBCardBody,
   MDBCardTitle,
   MDBCardText,
-  //   MDBCardFooter,
   MDBRow,
   MDBCol,
 } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
-// import SugaringServices from "./SugaringServices";
 
 export default function CardsServices() {
   return (

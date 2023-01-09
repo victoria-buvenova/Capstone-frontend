@@ -13,8 +13,9 @@ import {
 } from "mdb-react-ui-kit";
 import { useAuth } from "../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
-import FetchServices from "./FetchServices";
+import FetchServices from "../services/FetchServices";
 import Register from "./Register";
+import { isEmailValid, isPasswordValid } from "../utils";
 
 function Login() {
   const [justifyActive, setJustifyActive] = useState("tab1");
@@ -73,35 +74,6 @@ function Login() {
 
       <MDBTabsContent>
         <MDBTabsPane show={justifyActive === "tab1"}>
-          <div className="text-center mb-3">
-            <p>Sign in with:</p>
-
-            <div
-              className="d-flex justify-content-around mx-auto"
-              style={{ width: "40%" }}
-            >
-              <MDBBtn
-                tag="a"
-                color="none"
-                className="m-1"
-                style={{ color: "#1266f1" }}
-              >
-                <MDBIcon fab icon="facebook-f" size="sm" />
-              </MDBBtn>
-
-              <MDBBtn
-                tag="a"
-                color="none"
-                className="m-1"
-                style={{ color: "#1266f1" }}
-              >
-                <MDBIcon fab icon="google" size="sm" />
-              </MDBBtn>
-            </div>
-
-            <p className="text-center mt-3">or:</p>
-          </div>
-
           <MDBInput
             wrapperClass="mb-4"
             label="Email address"
@@ -118,18 +90,10 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <div>{errMsg}</div>
-          <div className="d-flex justify-content-around mx-4 mb-4">
-            <MDBCheckbox
-              name="flexCheck"
-              value=""
-              id="flexCheckDefault"
-              label="Remember me"
-            />
-            <a href="!#">Forgot password?</a>
-          </div>
+          <div style={{ color: "red" }}>{errMsg}</div>
 
           <MDBBtn
+            disabled={!isPasswordValid(password)}
             className="mb-4 w-100"
             onClick={() => {
               const user = users.find(
@@ -153,9 +117,6 @@ function Login() {
           >
             Sign in
           </MDBBtn>
-          <p className="text-center">
-            Not a member? <a href="#!">Register</a>
-          </p>
         </MDBTabsPane>
 
         <MDBTabsPane show={justifyActive === "tab2"}>

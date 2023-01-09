@@ -30,15 +30,34 @@ export const convertDate = (date) => {
   return `${split[2]} ${months[+split[1]]} ${split[0]}`;
 };
 
+//takes array of ALL TIMESLOTS
 export const unique = (array) => {
-  return array.reduce((previous, current) => {
-    if (
-      !previous.find((prevItem) => {
-        return prevItem.Date === current.Date;
-      })
-    ) {
-      previous.push(current);
-    }
-    return previous;
-  }, []);
+  return (
+    array
+      //filter to get only those with no NAME assigned
+      .filter((x) => !x.Name)
+      //reduce array to array of unique values(in this example each date should be unique)
+      .reduce((previous, current) => {
+        if (
+          !previous.find((prevItem) => {
+            return prevItem.Date === current.Date;
+          })
+        ) {
+          previous.push(current);
+        }
+        return previous;
+      }, [])
+  );
 };
+
+export const hasAtLeastDigit = (value) => /\d/.test(value);
+
+export const hasAtLeastLetter = (value) => /[a-zA-Z]/.test(value);
+
+export const isPasswordValid = (password) =>
+  hasAtLeastDigit(password) && hasAtLeastLetter(password);
+
+export const isEmailValid = (email) =>
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+    email.toLowerCase()
+  );

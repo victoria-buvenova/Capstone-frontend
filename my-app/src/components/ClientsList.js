@@ -11,8 +11,8 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import DeleteClient from "./DeleteClient";
-import EditBooking from "./EditBooking";
+import DeleteClient from "../services/DeleteClient";
+import EditBooking from "../services/EditBooking";
 import AddSlots from "./AddSlots";
 import {
   convertToJSDate,
@@ -21,7 +21,7 @@ import {
   getCurrentClient,
 } from "../utils";
 
-import FetchServices from "./FetchServices";
+import FetchServices from "../services/FetchServices";
 import { toast } from "react-toastify";
 
 export default function ClientsList() {
@@ -127,7 +127,6 @@ export default function ClientsList() {
                 id="datetime-local"
                 label="Next appointment"
                 type="datetime-local"
-                // defaultValue="2017-05-24T10:30"
                 value={addTime}
                 onChange={(e) => setAddTime(e.target.value)}
                 sx={{ width: 250 }}
@@ -183,7 +182,6 @@ export default function ClientsList() {
                     getCurrentClient(timeslotData, selected).Date,
                     getCurrentClient(timeslotData, selected).Time
                   )}
-                  // value={addTime}
                   onChange={(e) => setAddTime(e.target.value)}
                   sx={{ width: 250 }}
                   InputLabelProps={{

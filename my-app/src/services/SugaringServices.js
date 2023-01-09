@@ -1,6 +1,6 @@
 import FetchServices from "./FetchServices";
 import { MDBRow } from "mdb-react-ui-kit";
-import Spinner from "./Spinner";
+import Spinner from "../components/Spinner";
 import { useEffect, useState } from "react";
 import {
   MDBCard,
@@ -14,7 +14,7 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import EditPrice from "./EditPrice";
+import EditSugaringPrice from "./EditSugaringPrice";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthProvider";
 
@@ -106,7 +106,7 @@ export const SugaringServices = () => {
             <Button
               variant="primary"
               onClick={() => {
-                EditPrice(id, price);
+                EditSugaringPrice(id, price);
                 toast("Price successfully edited");
                 setPrice();
                 setId();
@@ -121,52 +121,3 @@ export const SugaringServices = () => {
     )
   );
 };
-
-// import Card from "react-bootstrap/Card";
-// import Spinner from "./Spinner";
-// import { useEffect, useState } from "react";
-// import FetchServices from "./FetchServices";
-// import { MDBRow } from "mdb-react-ui-kit";
-
-// export const SugaringServices = () => {
-//   const [services, setServices] = useState([]);
-
-//   useEffect(() => {
-//     const updateServices = async () => {
-//       let myData = await FetchServices(
-//         "http://localhost:8080/clients/sugaring"
-//       );
-//       setServices(myData);
-//     };
-//     console.log("sugaring");
-//     updateServices();
-//   }, []);
-
-//   if (services.length === 0) {
-//     return <Spinner />;
-//   }
-
-//   return (
-//     <>
-//       {services.map((service, index) => (
-//         <MDBRow className="row-cols-1 row-cols-md-3 g-4">
-//           <Card
-//             bg={service}
-//             key={index}
-//             text={service === "light" ? "dark" : "white"}
-//             style={{ width: "18rem" }}
-//             className="mb-2"
-//           >
-//             <Card.Header>Header</Card.Header>
-//             <Card.Body>
-//               <Card.Title>{service.type} </Card.Title>
-//               <Card.Text>
-//                 {service.description} {service.price}
-//               </Card.Text>
-//             </Card.Body>
-//           </Card>
-//         </MDBRow>
-//       ))}
-//     </>
-//   );
-// };
