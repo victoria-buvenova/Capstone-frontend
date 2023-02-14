@@ -1,13 +1,12 @@
-import { MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from "mdb-react-ui-kit";
+import { MDBBtn, MDBInput } from "mdb-react-ui-kit";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import AddUser from "./AddUser";
-import ValidationError from "./ValidationError";
+import AddUser from "../services/AddUser";
+import ValidationError from "../components/ValidationError";
 
 export default function Register() {
   const [email, setEmail] = useState("");
-  const [password1, setPassword1] = useState("");
-  const [password2, setPassword2] = useState("");
+
   const [password, setPassword] = useState({});
 
   return (

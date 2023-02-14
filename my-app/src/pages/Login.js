@@ -12,7 +12,7 @@ import {
 import { useAuth } from "../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import FetchServices from "../services/FetchServices";
-import Register from "../components/Register";
+import Register from "./Register";
 import { isPasswordValid } from "../utils";
 
 export default function Login() {

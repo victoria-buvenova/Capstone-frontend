@@ -13,7 +13,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import DeleteClient from "../services/DeleteClient";
 import EditBooking from "../services/EditBooking";
-import AddSlots from "./AddSlots";
+import AddSlots from "../services/AddSlots";
 import {
   convertToJSDate,
   extractDateFromJSDate,

@@ -21,6 +21,7 @@ export const MyBookings = () => {
       setBookings(myData);
     };
     updateBookings();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (bookings.length === 0) {

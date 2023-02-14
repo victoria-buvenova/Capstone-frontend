@@ -7,7 +7,7 @@ import { convertDate, isEmailValid, unique } from "../utils";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Modal from "react-bootstrap/Modal";
-import AddBooking from "./AddBooking";
+import AddBooking from "../services/AddBooking";
 
 export default function BookAppointment() {
   const [timeslotData, setTimeSlotData] = useState([]);
@@ -109,7 +109,6 @@ export default function BookAppointment() {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                // sx={{ width: 250 }}
                 InputLabelProps={{
                   shrink: true,
                 }}
