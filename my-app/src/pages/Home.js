@@ -1,7 +1,7 @@
 import React from "react";
 import { MDBCarousel, MDBCarouselItem, MDBBtn } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
-import CardsServices from "./CardsServices";
+import CardsServices from "../components/CardsServices";
 
 export default function Home() {
   return (

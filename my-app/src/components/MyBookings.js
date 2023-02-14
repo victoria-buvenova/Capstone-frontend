@@ -1,4 +1,3 @@
-import "./styles.css";
 import { useState, useEffect } from "react";
 import FetchServices from "../services/FetchServices";
 import { useAuth } from "../context/AuthProvider";
@@ -35,9 +34,9 @@ export const MyBookings = () => {
 
   return (
     <div>
-      <MDBCol>
+      <MDBCol className="d-flex justify-content-center h-100 m-4">
         <MDBCard
-          className="d-flex justify-content-center h-80"
+          className="d-flex justify-content-center h-80 m-4"
           style={{ height: "240px", width: "320px" }}
         >
           <MDBCardBody style={{ width: "100%" }}>

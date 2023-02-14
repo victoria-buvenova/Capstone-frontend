@@ -7,17 +7,15 @@ import {
   MDBTabsContent,
   MDBTabsPane,
   MDBBtn,
-  MDBIcon,
   MDBInput,
-  MDBCheckbox,
 } from "mdb-react-ui-kit";
 import { useAuth } from "../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import FetchServices from "../services/FetchServices";
-import Register from "./Register";
-import { isEmailValid, isPasswordValid } from "../utils";
+import Register from "../components/Register";
+import { isPasswordValid } from "../utils";
 
-function Login() {
+export default function Login() {
   const [justifyActive, setJustifyActive] = useState("tab1");
 
   const [email, setEmail] = useState("");
@@ -126,5 +124,3 @@ function Login() {
     </MDBContainer>
   );
 }
-
-export default Login;
