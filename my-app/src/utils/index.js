@@ -25,7 +25,10 @@ const months = {
   12: "Dec",
 };
 
+//converting the date into ui friendly format
+//like 10 May 2023
 export const convertDate = (date) => {
+  console.log(date);
   const split = date.split("-");
   return `${split[2]} ${months[+split[1]]} ${split[0]}`;
 };

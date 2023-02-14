@@ -12,7 +12,6 @@ import {
 export const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
   const { client } = useAuth();
-
   useEffect(() => {
     const updateBookings = async () => {
       let myData = await FetchServices(
@@ -21,8 +20,7 @@ export const MyBookings = () => {
       setBookings(myData);
     };
     updateBookings();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [client]);
 
   if (bookings.length === 0) {
     return (
@@ -44,7 +42,7 @@ export const MyBookings = () => {
             <MDBCardTitle className="text-center">Your bookings</MDBCardTitle>{" "}
             {bookings.map((booking, index) => {
               return (
-                <MDBCardText>
+                <MDBCardText key={booking.id}>
                   You have booking on {booking.Date} at {booking.Time}
                 </MDBCardText>
               );
